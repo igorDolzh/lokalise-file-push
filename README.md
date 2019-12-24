@@ -40,5 +40,4 @@ jobs:
 
         # The filename new keys should be attached to
         filename: messages.po
-
 ```
