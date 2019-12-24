@@ -1,0 +1,28 @@
+name: Lokalise Key Push
+description: "Pushes new translations keys to Lokalise"
+branding:
+  icon: arrow-up-circle
+  color: purple
+inputs:
+  api-token:
+    description: API token
+    required: true
+  project-id:
+    description: The project ID
+    required: true
+  directory:
+    description: The directory to find language files
+    required: true
+  format:
+    description: The file format to parse. (json, properties)
+    required: true
+  platform:
+    description: The Lokalise platform to sync
+    required: true
+  filename:
+    description: The Lokalise filename to use on new keys
+    required: true
+
+runs:
+  using: "node12"
+  main: "index.js"
