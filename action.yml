@@ -1,5 +1,5 @@
 name: Lokalise File Push
-description: "Pushes new translations keys to Lokalise"
+description: "Pushes files to Lokalise"
 branding:
   icon: arrow-up-circle
   color: purple
