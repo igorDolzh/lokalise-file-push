@@ -1,4 +1,4 @@
-name: Lokalise Key Push
+name: Lokalise File Push
 description: "Pushes new translations keys to Lokalise"
 branding:
   icon: arrow-up-circle
