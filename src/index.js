@@ -10,7 +10,7 @@ async function getLanguageISOCodes(lokalise, projectId) {
   return languages.map(x => x.lang_iso);
 }
 
-function readLanguageFile(lang, filePath) {
+function readLanguageFile(languageCode, filePath) {
   const path = filePath.replace(LANG_ISO_PLACEHOLDER, languageCode);
   return new Promise((resolve, reject) => {
     fs.readFile(path, "utf-8", (err, data) => {
