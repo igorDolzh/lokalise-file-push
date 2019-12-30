@@ -1,5 +1,5 @@
 const path = require("path");
-const uploadFiles = require("./uploadFiles/index");
+const uploadFiles = require("./src/index");
 const ghCore = require("@actions/core");
 const { LokaliseApi } = require("@lokalise/node-api");
 
