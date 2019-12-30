@@ -28,7 +28,7 @@ jobs:
           api-token: ${{ secrets.LOCALIZE_TOKEN }}
 
           # ID of the project to sync
-          project-id: 226204445dcaa59581a7b0.23094960
+          project-id: project-id
 
           # The relative file path where language files will be found
           file-path: src/locales/%LANG_ISO%/messages.po
