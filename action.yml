@@ -10,17 +10,8 @@ inputs:
   project-id:
     description: The project ID
     required: true
-  directory:
-    description: The directory to find language files
-    required: true
-  format:
-    description: The file format to parse. (json, properties)
-    required: true
-  platform:
-    description: The Lokalise platform to sync
-    required: true
-  filename:
-    description: The Lokalise filename to use on new keys
+  file-path:
+    description: The file path to find language files
     required: true
 
 runs:

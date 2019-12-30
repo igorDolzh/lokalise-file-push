@@ -1,14 +1,11 @@
 {
   "name": "lokalise-file-push",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "",
   "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
   "keywords": [],
   "author": "",
-  "license": "No license. Source is copyrighted.",
+  "license": "UNLICENSED",
   "dependencies": {
     "@actions/core": "^1.1.1",
     "@lokalise/node-api": "^1.2.0"
