@@ -27,7 +27,7 @@ async function uploadFiles({ lokalise, languageCodes, projectId, filePath }) {
   const starterPromise = Promise.resolve(null);
   const uploadFile = async lang => {
     try {
-      const filename = filePath.replace(LANG_ISO_PLACEHOLDER, languageCode);
+      const filename = filePath.replace(LANG_ISO_PLACEHOLDER, lang);
       const file = await readLanguageFile(filename);
       const buff = new Buffer(file);
       const data = await lokalise.files.upload(projectId, {
