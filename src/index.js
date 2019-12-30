@@ -29,7 +29,7 @@ async function uploadFiles({ lokalise, languageCodes, projectId, filePath }) {
     try {
       const filename = filePath.replace(LANG_ISO_PLACEHOLDER, lang);
       const file = await readLanguageFile(filename);
-      const buff = new Buffer(file);
+      const buff = Buffer.from(file);
       const data = await lokalise.files.upload(projectId, {
         data: buff.toString("base64"),
         filename,
