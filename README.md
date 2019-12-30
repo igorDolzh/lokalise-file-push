@@ -21,7 +21,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
-      - uses: igorDolzh/lokalise-file-push@v0.0.4
+      - uses: igorDolzh/lokalise-file-push@v0.0.5
         with:
           # Api token for the Lokalise account
           # with read/write access to the project
