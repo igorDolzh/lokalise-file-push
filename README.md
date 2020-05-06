@@ -32,4 +32,9 @@ jobs:
 
           # The relative file path where language files will be found
           file-path: src/locales/%LANG_ISO%/messages.po
+
+          # Tags
+          tags:
+            - tag1
+            - tag2
 ```

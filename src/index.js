@@ -5,9 +5,9 @@ const LANG_ISO_PLACEHOLDER = "%LANG_ISO%";
 
 async function getLanguageISOCodes(lokalise, projectId) {
   const languages = await lokalise.languages.list({
-    project_id: projectId
+    project_id: projectId,
   });
-  return languages.map(x => x.lang_iso);
+  return languages.map((x) => x.lang_iso);
 }
 
 function readLanguageFile(path) {
@@ -23,9 +23,15 @@ function readLanguageFile(path) {
   });
 }
 
-async function uploadFiles({ lokalise, languageCodes, projectId, filePath }) {
+async function uploadFiles({
+  lokalise,
+  languageCodes,
+  projectId,
+  filePath,
+  tags,
+}) {
   const starterPromise = Promise.resolve(null);
-  const uploadFile = async lang => {
+  const uploadFile = async (lang) => {
     try {
       const filename = filePath.replace(LANG_ISO_PLACEHOLDER, lang);
       const file = await readLanguageFile(filename);
@@ -33,7 +39,8 @@ async function uploadFiles({ lokalise, languageCodes, projectId, filePath }) {
       const data = await lokalise.files.upload(projectId, {
         data: buff.toString("base64"),
         filename,
-        lang_iso: lang
+        lang_iso: lang,
+        tags,
       });
       console.log("Uploadeed language file " + filename);
     } catch (error) {
@@ -46,13 +53,14 @@ async function uploadFiles({ lokalise, languageCodes, projectId, filePath }) {
   );
 }
 
-module.exports = async ({ lokalise, projectId, filePath }) => {
+module.exports = async ({ lokalise, projectId, filePath, tags }) => {
   const languageCodes = await getLanguageISOCodes(lokalise, projectId);
 
   await uploadFiles({
     lokalise,
     languageCodes,
     projectId,
-    filePath
+    filePath,
+    tags,
   });
 };
