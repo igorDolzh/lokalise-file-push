@@ -21,7 +21,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
-      - uses: igorDolzh/lokalise-file-push@v0.0.10
+      - uses: igorDolzh/lokalise-file-push@v0.0.11
         with:
           # Api token for the Lokalise account
           # with read/write access to the project
@@ -37,5 +37,5 @@ jobs:
           tag: tagName
 
           # Locales
-          locales: "['en', 'fr']"
+          locales: '["en", "fr"]'
 ```
