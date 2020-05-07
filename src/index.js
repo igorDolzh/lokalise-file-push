@@ -53,8 +53,9 @@ async function uploadFiles({
   );
 }
 
-module.exports = async ({ lokalise, projectId, filePath, tag }) => {
-  const languageCodes = await getLanguageISOCodes(lokalise, projectId);
+module.exports = async ({ lokalise, projectId, filePath, tag, locales }) => {
+  const languageCodes =
+    locales || (await getLanguageISOCodes(lokalise, projectId));
 
   await uploadFiles({
     lokalise,
