@@ -28,7 +28,7 @@ async function uploadFiles({
   languageCodes,
   projectId,
   filePath,
-  tags,
+  tag,
 }) {
   const starterPromise = Promise.resolve(null);
   const uploadFile = async (lang) => {
@@ -40,7 +40,7 @@ async function uploadFiles({
         data: buff.toString("base64"),
         filename,
         lang_iso: lang,
-        tags,
+        tags: [tag],
       });
       console.log("Uploadeed language file " + filename);
     } catch (error) {
@@ -53,7 +53,7 @@ async function uploadFiles({
   );
 }
 
-module.exports = async ({ lokalise, projectId, filePath, tags }) => {
+module.exports = async ({ lokalise, projectId, filePath, tag }) => {
   const languageCodes = await getLanguageISOCodes(lokalise, projectId);
 
   await uploadFiles({
@@ -61,6 +61,6 @@ module.exports = async ({ lokalise, projectId, filePath, tags }) => {
     languageCodes,
     projectId,
     filePath,
-    tags,
+    tag,
   });
 };

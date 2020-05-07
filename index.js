@@ -6,13 +6,13 @@ const { LokaliseApi } = require("@lokalise/node-api");
 const apiKey = ghCore.getInput("api-token");
 const projectId = ghCore.getInput("project-id");
 const filePath = ghCore.getInput("file-path");
-const tags = ghCore.getInput("tags");
+const tag = ghCore.getInput("tag");
 
 uploadFiles({
   lokalise: new LokaliseApi({ apiKey }),
   projectId,
   filePath: path.join(process.env.GITHUB_WORKSPACE, filePath),
-  tags,
+  tag,
 })
   .then(() => console.log("Finished"))
   .catch((error) => ghCore.setFailed(error ? error.message : "Unknown error"));
