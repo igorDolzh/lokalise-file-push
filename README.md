@@ -37,5 +37,5 @@ jobs:
           tag: tagName
 
           # Locales
-          locales: [en, fr]
+          locales: "['en', 'fr']"
 ```

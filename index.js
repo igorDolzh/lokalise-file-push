@@ -14,7 +14,7 @@ uploadFiles({
   projectId,
   filePath: path.join(process.env.GITHUB_WORKSPACE, filePath),
   tag,
-  locales,
+  locales: JSON.parse(locales),
 })
   .then(() => console.log("Finished"))
   .catch((error) => ghCore.setFailed(error ? error.message : "Unknown error"));
