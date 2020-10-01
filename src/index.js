@@ -67,7 +67,14 @@ async function uploadFiles({
   );
 }
 
-module.exports = async ({ lokalise, projectId, filePath, tag, locales }) => {
+module.exports = async ({
+  lokalise,
+  projectId,
+  filePath,
+  tag,
+  locales,
+  callback,
+}) => {
   const languageCodes =
     locales || (await getLanguageISOCodes(lokalise, projectId));
 
@@ -77,9 +84,6 @@ module.exports = async ({ lokalise, projectId, filePath, tag, locales }) => {
     projectId,
     filePath,
     tag,
-    callback: () => {
-      console.log("Finished");
-      ghCore.setOutput("uploaded", "true");
-    },
+    callback,
   });
 };

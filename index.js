@@ -15,4 +15,8 @@ uploadFiles({
   filePath: path.join(process.env.GITHUB_WORKSPACE, filePath),
   tag,
   locales: JSON.parse(locales),
+  callback: () => {
+    console.log("Finished");
+    ghCore.setOutput("uploaded", "true");
+  },
 });
