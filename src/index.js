@@ -29,9 +29,10 @@ async function uploadFiles({
   projectId,
   filePath,
   tag,
+  callback,
 }) {
   const starterPromise = Promise.resolve(null);
-  const uploadFile = async (lang) => {
+  const uploadFile = async (lang, callback) => {
     try {
       const filename = filePath.replace(LANG_ISO_PLACEHOLDER, lang);
       const file = await readLanguageFile(filename);
@@ -42,20 +43,26 @@ async function uploadFiles({
         lang_iso: lang,
         tags: [tag],
       });
-      while (process.status !== "finished") {
-        setInterval(async () => {
-          process = await lokaliseApi.queuedProcesses.get(process.process_id, {
-            project_id: project_id,
+      let inteval = setInterval(async () => {
+        if (process.status === "finished") {
+          clearInterval(inteval);
+          console.log("Uploaded language file: " + filename);
+          callback();
+        } else {
+          process = await lokalise.queuedProcesses.get(process.process_id, {
+            project_id: projectId,
           });
-        }, 1000);
-      }
+          console.log(process);
+        }
+      }, 1000);
       console.log("Uploaded language file " + filename);
     } catch (error) {
+      ghCore.setFailed(error ? error.message : "Unknown error");
       console.error(`Error reading language file ${lang}: ${error.message}`);
     }
   };
   await languageCodes.reduce(
-    async (p, lang) => p.then(() => uploadFile(lang)),
+    async (p, lang) => p.then(() => uploadFile(lang, callback)),
     starterPromise
   );
 }
@@ -70,5 +77,9 @@ module.exports = async ({ lokalise, projectId, filePath, tag, locales }) => {
     projectId,
     filePath,
     tag,
+    callback: () => {
+      console.log("Finished");
+      ghCore.setOutput("uploaded", "true");
+    },
   });
 };
