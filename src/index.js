@@ -36,12 +36,19 @@ async function uploadFiles({
       const filename = filePath.replace(LANG_ISO_PLACEHOLDER, lang);
       const file = await readLanguageFile(filename);
       const buff = Buffer.from(file);
-      const data = await lokalise.files.upload(projectId, {
+      let process = await lokalise.files.upload(projectId, {
         data: buff.toString("base64"),
         filename,
         lang_iso: lang,
         tags: [tag],
       });
+      while (process.status !== "finished") {
+        setInterval(() => {
+          process = await lokaliseApi.queuedProcesses.get(process.process_id, {
+            project_id: project_id,
+          });
+        },1000)
+      }
       console.log("Uploaded language file " + filename);
     } catch (error) {
       console.error(`Error reading language file ${lang}: ${error.message}`);
