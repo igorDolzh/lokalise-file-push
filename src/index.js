@@ -43,11 +43,11 @@ async function uploadFiles({
         tags: [tag],
       });
       while (process.status !== "finished") {
-        setInterval(() => {
+        setInterval(async () => {
           process = await lokaliseApi.queuedProcesses.get(process.process_id, {
             project_id: project_id,
           });
-        },1000)
+        }, 1000);
       }
       console.log("Uploaded language file " + filename);
     } catch (error) {
