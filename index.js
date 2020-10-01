@@ -16,5 +16,8 @@ uploadFiles({
   tag,
   locales: JSON.parse(locales),
 })
-  .then(() => console.log("Finished"))
+  .then(() => {
+    ghCore.setOutput("uploaded", "true");
+    console.log("Finished");
+  })
   .catch((error) => ghCore.setFailed(error ? error.message : "Unknown error"));
