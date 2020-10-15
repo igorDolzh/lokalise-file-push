@@ -7,6 +7,7 @@ const getContext = (text) => {
     /<!--- LOKALIZE CONTEXT FOR TRANSLATORS -->((.|\n|\r|\t|\0)*)<!--- LOKALIZE CONTEXT FOR TRANSLATORS -->/
   );
   console.log(foundText);
+  console.log(foundText[1]);
   return foundText ? foundText[1] : "";
 };
 const getClubhouseLink = (text) => {
