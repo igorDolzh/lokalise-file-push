@@ -2,9 +2,9 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const getContext = (text) => {
   console.log("getContext");
-  console.log(text);
+  console.log("'" + text + "'");
   const foundText = text.match(
-    /<!--- LOKALIZE CONTEXT FOR TRANSLATORS -->((.|\n)*)<!--- LOKALIZE CONTEXT FOR TRANSLATORS -->/
+    /<!--- LOKALIZE CONTEXT FOR TRANSLATORS -->((.|\n|\r|\t|\0)*)<!--- LOKALIZE CONTEXT FOR TRANSLATORS -->/
   );
   console.log(foundText);
   return foundText ? foundText[1] : "";
